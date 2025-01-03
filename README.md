@@ -1,116 +1,132 @@
-Mon Portfolio
+# Mon Portfolio
 
-Un portfolio moderne et dynamique construit avec un frontend React et un backend Node.js/Express, conçu pour être déployé sur Render en tant qu'application monolithique ou hébergée séparément.
-Architecture du Projet
+Un portfolio moderne et dynamique, construit avec un frontend React et un backend Node.js/Express, évoluant vers une architecture sécurisée et conteneurisée avec Docker et Nginx pour l'hébergement sur un serveur privé.
 
-Le projet est organisé en trois parties principales :
+## Architecture du Projet
 
-    Root : Configuration globale pour le déploiement, incluant les scripts de démarrage et de build.
-    Client : Frontend construit avec React, situé dans le répertoire client/.
-    Server : Backend basé sur Node.js et Express, situé dans le répertoire server/.
+Le projet est organisé en plusieurs parties principales :
 
-Déploiement sur Render
+- **Frontend** : Construit avec React, situé dans le répertoire `client/`, il fournit une interface utilisateur moderne et responsive.
+- **Backend** : Basé sur Node.js et Express, situé dans le répertoire `server/`, il gère les API et la logique côté serveur.
+- **Docker et Nginx** : Gèrent la conteneurisation et le reverse-proxy pour l'hébergement, permettant une configuration multi-site.
 
-L'application est configurée pour un déploiement monolithique où le backend sert les fichiers statiques du frontend. Voici les directives utilisées sur Render :
-Directives Render
-Paramètre	Valeur
-Root Directory	/server
-Build Command	npm install && npm run heroku-postbuild
-Start Command	npm start
-Explication des Commandes
+## Hébergement sur un Serveur Privé
 
-    Build Command :
-        Installe toutes les dépendances nécessaires.
-        Exécute heroku-postbuild, qui installe les dépendances backend et construit le frontend dans client/build.
+Le projet est déployé sur un serveur OVH utilisant Docker Compose pour gérer les conteneurs et Nginx comme reverse-proxy.
 
-    Start Command :
-        Démarre le backend, qui sert également les fichiers construits du frontend.
+### Configuration des Conteneurs avec Docker Compose
 
-Scripts Disponibles
+Voici la structure de `docker-compose.yml` :
 
-Les principaux scripts définis dans le fichier package.json facilitent le développement et le déploiement :
-Script	Description
-npm start	Lance simultanément le frontend et le backend en mode local.
-npm run server	Lance uniquement le backend avec nodemon pour le développement.
-npm run client	Démarre uniquement le frontend en mode développement.
-npm run build	Construit le frontend dans client/build pour le déploiement.
-heroku-postbuild	Installe les dépendances backend et construit le frontend pour la production.
-Démarrage en Local
+```yaml
+services:
+  site:
+    image: ynsa/monportfolio:latest
+    container_name: portfolio_site
+    environment:
+      VIRTUAL_HOST: ysportfolio.fr,www.ysportfolio.fr
+      LETSENCRYPT_HOST: ysportfolio.fr,www.ysportfolio.fr
+      LETSENCRYPT_EMAIL: contacter-moi@ysportfolio.fr
+    env_file:
+      - ./portfolio/.env
+    networks:
+      - server_network
 
-Pour exécuter le projet localement, suivez ces étapes :
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+    networks:
+      - server_network
 
-    Cloner le dépôt :
+  acme-companion:
+    image: nginxproxy/acme-companion
+    container_name: acme-companion
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs:rw
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+    networks:
+      - server_network
 
-git clone <URL-du-dépôt>
-cd <répertoire-du-projet>
+networks:
+  server_network:
+    external: true
+```
 
-Installer les dépendances :
+### Fonctionnalités Clés de l'Hébergement
 
-npm install
+- **Nginx** : Gère les redirections et agit comme reverse-proxy.
+- **HTTPS** : Assuré par Let's Encrypt pour des échanges sécurisés.
+- **Gestion Multi-Site** : Permet d'héberger plusieurs sites grâce à Docker.
 
-Créer un fichier .env dans le répertoire server/ avec les variables nécessaires :
+## Fonctionnalités Clés du Projet
 
-MONGODB_URI=your-mongodb-uri
-JWT_SECRET=your-jwt-secret
-EMAIL_USER=your-email-user
-EMAIL_PASS=your-email-password
-ALTCHA_API_SECRET=your-altcha-secret
+- **Authentification Sécurisée** :
+  - Utilisation de JWT pour gérer les sessions.
+  - Hachage des mots de passe avec bcrypt.
 
-Lancer le projet en mode développement :
+- **Gestion des Projets** :
+  - CRUD complet (ajout, modification, suppression et récupération des projets).
+  - Stockage des projets dans une base MongoDB.
 
-    npm start
+- **Formulaire de Contact** :
+  - Captcha ALTCHA pour éviter les spams.
+  - Envoi d'e-mails via nodemailer.
 
-        Le frontend sera accessible sur http://localhost:3000.
-        Le backend répondra sur le même port grâce à un proxy configuré.
+- **Performance et Sécurité** :
+  - Limitation des requêtes avec express-rate-limit.
+  - Optimisation de la livraison des contenus statiques.
 
-Détails du Serveur Express
-Fichiers Statistiques
+## Instructions pour le Développement Local
 
-Le backend est configuré pour servir les fichiers construits du frontend depuis client/build :
+### Prérequis
+- Node.js et npm installés localement.
+- Docker et Docker Compose pour la conteneurisation.
 
-app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+### Installation
 
-Gestion des Routes
+1. Cloner le dépôt :
+   ```bash
+   git clone <URL-du-dépôt>
+   cd <répertoire-du-projet>
+   ```
 
-Pour gérer les routes non reconnues côté backend, le serveur redirige vers l'application React :
+2. Installer les dépendances :
+   ```bash
+   npm install
+   ```
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
-});
+3. Créer un fichier `.env` dans `portfolio/` :
+   ```env
+   MONGODB_URI=your-mongodb-uri
+   JWT_SECRET=your-jwt-secret
+   EMAIL_USER=your-email-user
+   EMAIL_PASS=your-email-password
+   REACT_APP_ALTCHA_API_KEY=your-altcha-api-key
+   ```
 
-Séparation Frontend et Backend pour Hébergement Indépendant
+4. Lancer les conteneurs Docker :
+   ```bash
+   docker-compose up -d
+   ```
 
-Si vous souhaitez déployer le frontend et le backend séparément :
+### Accès au Site
 
-    Backend :
-        Commentez ou supprimez cette ligne dans le fichier server/app.js :
+- **Frontend** : Disponible sur [http://localhost:3000](http://localhost:3000).
+- **Backend** : Disponible sur [http://localhost:5000](http://localhost:3001).
 
-        app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
-
-    Frontend :
-        Hébergez le frontend sur une plateforme comme Netlify ou Vercel.
-        Configurez une URL d'API ou un proxy pour pointer vers le backend.
-
-Cela permet de déployer, maintenir et mettre à jour chaque partie indépendamment.
-Fonctionnalités Clés
-
-    Authentification Sécurisée :
-        Utilisation de JWT pour gérer les tokens.
-        Hashing sécurisé des mots de passe avec bcrypt.
-
-    Gestion des Projets :
-        CRUD complet (ajout, modification, suppression et récupération des projets).
-        Récupération dynamique des projets depuis MongoDB.
-
-    Formulaire de Contact :
-        Sécurisé avec ALTCHA Captcha pour éviter les abus.
-        Envoi d'emails via nodemailer et SMTP.
-
-    Sécurisation et Performance :
-        Limitation des requêtes avec express-rate-limit.
-        Gestion des CORS pour des requêtes cross-origin (si besoin).
-
-Auteur
+## Auteur
 
 Créé par Yoann Sousa.
-Pour toute question ou suggestion, contactez-moi à : contacter-moi@ysportfolio.fr
+Pour toute question ou suggestion, contactez-moi à : contacter-moi@ysportfolio.fr.
