@@ -21,12 +21,12 @@ Voici la structure de `docker-compose.yml` :
 ```yaml
 services:
   site:
-    image: ynsa/monportfolio:latest
+    image: /*******/:latest
     container_name: portfolio_site
     environment:
       VIRTUAL_HOST: ysportfolio.fr,www.ysportfolio.fr
       LETSENCRYPT_HOST: ysportfolio.fr,www.ysportfolio.fr
-      LETSENCRYPT_EMAIL: contacter-moi@ysportfolio.fr
+      LETSENCRYPT_EMAIL: /******************/
     env_file:
       - ./portfolio/.env
     networks:
