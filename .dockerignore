@@ -1,0 +1,27 @@
+# Node.js and npm related
+**/node_modules
+**/npm-debug.log
+**/yarn-error.log
+**/.log
+
+# Environment files
+**/.env
+.env.*
+
+# Version control
+**/.git
+**/.gitignore
+**/.gitattributes
+
+# Build artifacts
+**/dist/
+**/build/
+
+# IDE/Editor specific
+**/.vscode/
+**/.idea/
+**/.swp
+
+# Documentation
+**/README.md
+**/LICENSE

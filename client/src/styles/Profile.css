@@ -1,0 +1,101 @@
+/* Main Profile Container */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.profile .profile-content {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-around; /* Space items evenly around */
+  width: 100%;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+.profile .profile-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 50%; /* Ensure it doesn't exceed half the available space */
+  box-sizing: border-box;
+}
+.profile .profile-text .profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.profile .profile-text .profile-section .section-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  border-left: 4px solid #000000; /* Stylish left border */
+  padding-left: 10px; /* Space between border and text */
+  color: #000000;
+}
+.profile .profile-text .profile-section .profile-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #000000;
+}
+.profile .logo-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  max-width: 30%;
+  height: auto; /* Let height adjust based on content */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+.profile .logo-container #rect1 {
+  transition: transform 0.5s ease;
+  transform-origin: center;
+}
+.profile .logo-container #barre1,
+.profile .logo-container #barre2,
+.profile .logo-container #barre0 {
+  transition: transform 0.5s ease;
+}
+.profile .logo-container:hover #rect1 {
+  transform: rotate(-45deg);
+}
+.profile .logo-container:hover #barre1 {
+  transform: translate(-15px, 15px);
+}
+.profile .logo-container:hover #barre2 {
+  transform: translateY(-15px);
+}
+.profile .logo-container:hover #barre0 {
+  transform: translate(15px, 15px);
+}
+.profile .logo-container .landing-logo {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive Rules */
+@media (max-width: 1000px) {
+  .profile .profile-content {
+    flex-direction: column; /* Stack items vertically for smaller screens */
+    justify-content: center;
+    text-align: center; /* Center text alignment */
+  }
+  .profile .profile-text {
+    max-width: 100%;
+  }
+  .profile .profile-text .profile-section .section-title {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .profile .profile-text .profile-section .section-title.mobile-hide {
+    display: none;
+  }
+  .profile .profile-text .profile-section .profile-description.mobile-hide {
+    display: none;
+  }
+  .logo-container {
+    width: 100%; /* Full width for smaller screens */
+    height: auto; /* Adjust height */
+  }
+}/*# sourceMappingURL=Profile.css.map */

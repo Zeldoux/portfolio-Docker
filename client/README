@@ -1,0 +1,114 @@
+Client du Portfolio
+
+
+Composants Clés
+
+    TypingEffect : Animation de texte simulant un effet de saisie et de suppression.
+    SkillPieChart : Graphique circulaire affichant les compétences d'une catégorie avec des logos.
+    Card :  Carte affichant les informations principales d'un projet, cliquable pour ouvrir une modale.
+    Modal : Fenêtre modale permettant d'afficher des détails ou des interactions supplémentaires.
+    Header : Barre de navigation avec logo SVG, liens vers les sections principales, et gestion de l'état d'authentification (connexion/déconnexion).
+    ParticleBackground : Animation visuelle d'arrière-plan avec des particules en mouvement.
+    Projects : Liste des projets récupérés depuis une API REST, avec affichage détaillé via des modales et galeries d'images interactives.
+    Skills : Affichage des compétences sous forme de graphiques circulaires (chart.js) avec des logos associés.
+    Contact : Formulaire de contact sécurisé avec vérification via ALTCHA Captcha.
+    Admin Page : Interface d'administration permettant l'ajout, la modification et la suppression des projets.
+
+Scripts Disponibles
+
+Les scripts principaux sont définis dans le fichier package.json pour faciliter le développement et le déploiement :
+
+    npm start : Démarre l'application en mode développement sur http://localhost:3000.
+    npm run build : Génère les fichiers optimisés pour la production dans le dossier build. Cela inclut :
+        Minification du code.
+        Suppression des warnings.
+        Compression des ressources.
+    npm test : Lance les tests interactifs avec Testing Library.
+    npm run eject : Extrait la configuration par défaut de react-scripts pour personnaliser Webpack et les autres outils. ⚠️ Cette opération est irréversible.
+
+Authentification et Accès Administratif
+Contexte d'Authentification
+
+Le frontend utilise un contexte React pour gérer l'état d'authentification de l'utilisateur. Le token JWT est stocké dans localStorage et utilisé pour protéger l'accès à l'administration.
+
+Fonctionnement :
+
+    Login : Enregistrement du token dans le localStorage.
+    Logout : Suppression du token et redirection vers la page d'accueil.
+
+    Routes Protégées
+
+    Le composant ProtectedRoute contrôle l'accès aux routes nécessitant une authentification. Si l'utilisateur n'est pas connecté, il est redirigé vers une page d'erreur.
+    Compatibilité Navigateur
+
+
+Instructions de Démarrage en Local
+
+Pour exécuter le projet en local :
+
+    Cloner le projet :
+
+  git clone <lien_du_projet>
+  cd client
+
+  Installer les dépendances :
+
+  npm install
+
+  Démarrer l'application en mode développement :
+
+    npm start
+
+    L'application sera accessible sur http://localhost:3000.
+
+Architecture des Dossiers
+
+    src/components : Tous les composants React (Header, Footer, Modals, Skills, etc.).
+    src/Pages : Pages principales (MainPage, AdminPage, ErrorPage).
+    src/Context : Gestion de l'état global, notamment le contexte d'authentification.
+    src/styles : Fichiers CSS pour la personnalisation de l'apparence.
+    src/Router : Gestion des routes avec React Router.
+    src/data : Fichiers JSON pour les compétences et autres données statiques.
+
+Fonctionnalités Clés
+
+  Gestion des Images et Média
+
+      Bien que Cloudinary ne soit pas utilisé en tant que CDN dynamique, les images sont optimisées grâce aux paramètres q_auto (qualité automatique) et format_auto pour un chargement efficace directement via leurs URLs.
+      Cela garantit une adaptation automatique des formats et une performance accrue sur tous les types d’appareils.
+
+  Animation SVG Personnalisée
+
+      Un logo SVG entièrement animé a été conçu pour le projet.
+      La création utilise directement des objets SVG dans le frontend, offrant une flexibilité maximale et une intégration harmonieuse avec React.
+
+  Sécurité et Captcha
+
+      ALTCHA Captcha est intégré dans le formulaire de contact pour éviter les soumissions non désirées.
+      Le backend valide ces requêtes, sécurisant ainsi l'envoi des emails.
+
+  Base de Données MongoDB
+
+      La base MongoDB héberge les informations des projets (titre, description, images, compétences, problèmes rencontrés, solutions apportées, etc.).
+      Les API permettent de :
+          Récupérer les projets : Affichés sur le portfolio en temps réel.
+          Ajouter de nouveaux projets : Interface accessible via l’administration.
+          Modifier/Supprimer : Actions réservées à l’administrateur.
+
+Déploiement
+
+L'application est hébergée en ligne et repose sur une architecture distribuée :
+
+    Serveur Backend :
+    Le backend est déployé sur Render. Il gère plusieurs fonctionnalités essentielles :
+        Gestion des Projets : Les données des projets sont stockées dans une base de données MongoDB, ce qui permet de récupérer, ajouter et modifier les projets via des API REST sécurisées.
+        Authentification : Le backend utilise des tokens JWT pour sécuriser l'accès à l'administration.
+        Envoi Sécurisé d'Emails : Les emails soumis via le formulaire de contact sont protégés grâce à ALTCHA Captcha, réduisant les risques de spam et de bots.
+
+    Frontend :
+    Une version buildée du frontend est également hébergée sur Render, directement servie par le serveur backend. Cela simplifie le déploiement et centralise les opérations.
+
+Auteur
+
+Yoann Sousa
+Développeur passionné.

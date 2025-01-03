@@ -1,0 +1,101 @@
+[
+    {
+      "category": "Développement Web",
+      "skills": [
+        {
+          "name": "JavaScript",
+          "level": "Advanced",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731341124/js_cgigri.png",
+          "description": "Bibliothèque JavaScript pour construire des interfaces utilisateur."
+        },
+        {
+          "name": "HTML",
+          "level": "Expert",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731341130/html_dl06nt.png",
+          "description": "Langage de balisage permettant de structurer le contenu d'un site web."
+        },
+        {
+          "name": "CSS",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731341580/css_ed69gl.png",
+          "description": "Langage de style utilisé pour définir l'apparence visuelle et la mise en page des sites web."
+        },
+        {
+          "name": "React",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731341123/react_akyygj.png",
+          "description": "Bibliothèque JavaScript pour créer des interfaces utilisateur dynamiques et réactives."
+        },
+        {
+          "name": "NodeJs",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731342214/node-js_gchm8l.png",
+          "description": "Environnement d'exécution JavaScript côté serveur permettant de créer des applications web rapides et évolutives."
+        },
+        {
+          "name": "ExpressJS",
+          "level": "Intermediate",
+          "logo":"https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1732304841/pngwing.com_3_blqo5t.png",
+          "description": "Framework minimaliste pour Node.js facilitant la création d'API et de serveurs web robustes et modulaires."
+        },
+        {
+          "name": "MongoDB",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731343033/MongoDB_oo3o9n.png",
+          "description": "Base de données NoSQL orientée document, idéale pour gérer des données non structurées."
+        }
+      ]
+    },
+    {
+      "category": "DevOps",
+      "skills": [
+        {
+          "name": "Apache",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731342744/Apache_xitgjw.png",
+          "description": "Serveur HTTP open-source utilisé pour héberger des sites web et des applications."
+        },
+        {
+          "name": "MySQL",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731342957/MySQL_stlfuj.png",
+          "description": "Système de gestion de bases de données relationnelles performant et open-source."
+        },
+        {
+          "name": "Nginx",
+          "level":"intermediate",
+          "logo":"https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1735931960/pngegg_1_lip4kp.png",
+          "description": "Serveur web et reverse-proxy performant utilisé pour gérer les redirections, optimiser le trafic et sécuriser les communications."
+        },
+        {
+          "name": "Docker",
+          "level":"intermediate",
+          "logo":"https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1735931962/pngegg_jumbio.png",
+          "description": "Une technologie de conteneurisation qui encapsule les applications et leurs dépendances dans des environnements isolés et portables."
+        }
+      ]
+    },
+    {
+      "category": "Développement de Jeux Vidéo",
+      "skills": [
+        {
+          "name": "MonoGame",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731343108/monogame_npkibd.webp",
+          "description": "Framework C# open-source pour développer des jeux vidéo multiplateformes."
+        },
+        {
+          "name": "Love2D",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731343456/love2dd_iun8vu.png",
+          "description": "Framework léger et simple basé sur Lua pour créer des jeux en 2D."
+        },
+        {
+          "name": "Godot",
+          "level": "Intermediate",
+          "logo": "https://res.cloudinary.com/zeldoux/image/upload/q_auto,f_auto/v1731343568/Godot_r4xvji.png",
+          "description": "Moteur de jeu open-source complet, adapté au développement 2D et 3D."
+        }
+      ]
+    }
+]

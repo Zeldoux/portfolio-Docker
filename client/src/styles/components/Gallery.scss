@@ -1,0 +1,76 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixins';
+@import '../abstracts/media';
+
+.gallery {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-xlarge;
+  padding: 1rem;
+  margin-top: 1.5rem;
+
+  .gallery-image-wrapper {
+    width: 100%;
+    height: 60vh; /* Dynamically scale height based on viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent content from spilling out */
+    background-color: $color-white; /* Optional background for better appearance */
+    border: 2px solid $color-gray-medium; /* Border for structure */
+    @include border-radius($border-radius-large);
+
+    @include respond-to(mobile) {
+      height: 40vh; /* Adjust height for smaller screens */
+    }
+  }
+
+  .gallery-image {
+    max-width: 100%; /* Ensure image fits within the container width */
+    max-height: 100%; /* Ensure image fits within the container height */
+    object-fit: contain; /* Show full image without cropping */
+
+    
+  }
+
+  .arrow {
+    background: none;
+    border: none;
+    font-size: $font-size-xlarge;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-gray-dark;
+    padding: 0 1rem;
+
+    &:hover {
+      color: $color-blue;
+    }
+  }
+
+  .left-arrow {
+    left: 0;
+  }
+
+  .right-arrow {
+    right: 0;
+  }
+
+  .image-index {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: $font-size-base;
+    color: $color-white;
+    background: $color-overlay;
+    padding: 5px 0;
+
+    @include respond-to(mobile) {
+      font-size: $font-size-small;
+    }
+  }
+}

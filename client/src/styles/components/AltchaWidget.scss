@@ -1,0 +1,27 @@
+@import '../abstracts/variable'; 
+@import '../abstracts/mixins';
+
+:root {
+  altcha-widget {
+    --altcha-border-width: 0px; /* Remove the border width */
+    --altcha-color-border: transparent; /* Make the border transparent */
+  
+    &::part(logo) {
+      filter: brightness(0); /* Turn the logo to black */
+    }
+  
+    &::part(footer) {
+      color: $color-black; 
+      background-color: $color-black; 
+      border: none; 
+    }
+  }
+  
+  fieldset {
+    border: none; /* Remove the border of the fieldset */
+  }
+  
+  .altcha.svelte-ddsc3z {
+    border: none; 
+  }
+}

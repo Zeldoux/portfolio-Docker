@@ -1,0 +1,66 @@
+@import '../abstracts/variable';
+@import '../abstracts/media';
+
+.skills {
+    padding: 20px;
+    text-align: center;
+}
+
+.skills-title {
+    font-size: 2em;
+    color: $color-black;
+    margin-bottom: 20px;
+}
+
+/* Container  style for the pie charts */
+.pie-chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px; /* Space between charts */
+    width: 100%;
+    padding: 40px 0; /* padding around the container */
+}
+
+/* chart positioning styling sizing  */
+.category-container {
+    position: relative;
+    width: 300px; /* Increased chart size */
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Category title , animated underline */
+.category-title {
+    color: $color-black;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Initial hidden underline */
+.category-title::after {
+    content: '';
+    position: absolute;
+    top: 1.8rem;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $color-black;
+    transition: width 0.3s ease;
+}
+
+/* Animated underline on hover chart */
+.category-container:hover .category-title::after {
+    width: 100%; /* Grow underline to full width */
+}
+
+/* Pie chart wrapper for centering chart and hover info */
+.pie-chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}

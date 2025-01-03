@@ -1,0 +1,106 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixins';
+@import '../abstracts/media';
+
+/* Main Profile Container */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+
+  .profile-content {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-around; /* Space items evenly around */
+    width: 100%;
+    gap: 2rem;
+    box-sizing: border-box;
+  }
+
+  .profile-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 50%; /* Ensure it doesn't exceed half the available space */
+    box-sizing: border-box;
+
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .section-title {
+        
+        font-weight: bold;
+        text-transform: uppercase;
+        border-left: 4px solid $color-black; /* Stylish left border */
+        padding-left: 10px; /* Space between border and text */
+        color: $color-black;
+      }
+
+      .profile-description {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: $color-black;
+      }
+    }
+  }
+
+  .logo-container {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    max-width: 30%;
+    height: auto; /* Let height adjust based on content */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    @include logo-hover-animation;
+
+    .landing-logo {
+      width: 100%;
+      height: auto; /* Maintain aspect ratio */
+    }
+  }
+}
+
+/* Responsive Rules */
+@include respond-to(mobile) {
+
+  .profile{
+
+
+    .profile-content {
+      flex-direction: column; /* Stack items vertically for smaller screens */
+      justify-content: center;
+      text-align: center; /* Center text alignment */
+    }
+
+    .profile-text {
+      max-width: 100%;
+      
+      .profile-section {
+        .section-title {
+          width: fit-content;
+          &.mobile-hide {
+            display: none ; 
+            
+          }
+        }
+
+        .profile-description {
+          &.mobile-hide {
+            display: none ;
+          }
+        } 
+      }
+    }
+  }
+
+  .logo-container {
+    width: 100%; /* Full width for smaller screens */
+    height: auto; /* Adjust height */
+  }
+}

@@ -1,0 +1,39 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixins';
+@import '../abstracts/media';
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-image: url('https://res.cloudinary.com/zeldoux/image/upload/v1732045642/up-arrow-png-27176_ybhtk4.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: $box-shadow-medium;
+    z-index: $z-index-header;
+  
+    /* Initial semi-transparent state */
+    opacity: 0.6;
+    transition: opacity $transition-medium ease-in-out;
+  
+    &:hover {
+      /* Fully opaque on hover */
+      opacity: 1;
+    }
+  
+    &.visible {
+      /* Ensure visibility when scrolling down */
+      display: block;
+      opacity: 0.6;
+    }
+    
+    @media (min-width: 769px) {
+      display: none; /* Hide on larger screens */
+    }
+  }
+  

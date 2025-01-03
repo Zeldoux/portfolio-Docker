@@ -1,0 +1,50 @@
+@import '../abstracts/variable';
+@import '../abstracts/mixins';
+@import '../abstracts/media';
+
+.footer {
+  background-color: $color-black;
+  color: $color-white;
+  width: 100%;
+  padding: 1rem;
+  @include flex-center();
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  .footer-content {
+    display: flex;
+    gap: 4rem;
+    font-size: $font-size-base;
+
+    a {
+      color: $color-white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      
+      @include transition(color, $transition-fast);
+      svg {
+        width: 40px; // Default logo size
+        height: 40px;
+      }
+      &:hover {
+        color: $color-gray-light;
+      }
+    }
+  }
+
+  // Add responsiveness
+  @include respond-to(mobile) {
+    padding: 1.8rem; // Increase padding on smaller screens
+
+    .footer-content {
+      gap: 5rem; 
+      svg {
+        width: 40px; 
+        height: 40px;
+      }
+    }
+  }
+}

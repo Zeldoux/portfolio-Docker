@@ -1,0 +1,679 @@
+html {
+  font-size: 100%; /* Default is 16px (1rem) */
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 110%; /* Scales down for smaller devices */
+  }
+}
+@media (max-width: 480px) {
+  html {
+    font-size: 120%; /* Further scales down for very small devices */
+  }
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900; /* Supports weights from Thin (100) to Black (900) */
+  font-display: swap;
+  src: url("../Assets/fonts/Inter-VariableFont.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 100 900; /* Supports weights from Thin (100) to Black (900) */
+  font-display: swap;
+  src: url("../Assets/fonts/RobotoMono-VariableFont.ttf") format("truetype");
+}
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-image: url("https://res.cloudinary.com/zeldoux/image/upload/v1732045642/up-arrow-png-27176_ybhtk4.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  /* Initial semi-transparent state */
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+.scroll-to-top:hover {
+  /* Fully opaque on hover */
+  opacity: 1;
+}
+.scroll-to-top.visible {
+  /* Ensure visibility when scrolling down */
+  display: block;
+  opacity: 0.6;
+}
+@media (min-width: 769px) {
+  .scroll-to-top {
+    display: none; /* Hide on larger screens */
+  }
+}
+
+:root altcha-widget {
+  --altcha-border-width: 0px; /* Remove the border width */
+  --altcha-color-border: transparent; /* Make the border transparent */
+}
+:root altcha-widget::part(logo) {
+  filter: brightness(0); /* Turn the logo to black */
+}
+:root altcha-widget::part(footer) {
+  color: #000000;
+  background-color: #000000;
+  border: none;
+}
+:root fieldset {
+  border: none; /* Remove the border of the fieldset */
+}
+:root .altcha.svelte-ddsc3z {
+  border: none;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card-image {
+  width: 100%;
+  aspect-ratio: 16/9; /* Maintain a consistent aspect ratio for the image */
+  -o-object-fit: cover;
+     object-fit: cover; /* Ensures the image covers its container without distortion */
+  flex-shrink: 0; /* Prevent image from shrinking */
+}
+.card-title {
+  flex: 1;
+  font-size: 1rem;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.contact-section h2 {
+  margin-bottom: 20px;
+}
+.contact-section .contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.contact-section .contact-form label {
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #000000;
+}
+.contact-section .contact-form input,
+.contact-section .contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.contact-section .contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.contact-section .contact-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.contact-section .contact-form button:hover {
+  background-color: #555;
+}
+.contact-section .form-status {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff; /* Softer background for better contrast */
+  padding: 20px;
+  width: 90%;
+  max-width: 80%;
+  max-height: 50rem;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+}
+@media (max-width: 1000px) {
+  .modal-content {
+    width: 95%;
+    max-height: 95%;
+    padding: 15px;
+    overflow-y: auto;
+  }
+}
+.modal-content .modal-close {
+  justify-content: flex-end;
+  display: flex;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0 1rem 0;
+}
+@media (max-width: 1000px) {
+  .modal-content .modal-close {
+    font-size: 1.2rem;
+  }
+}
+.modal-content .project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-content .project-info h2, .modal-content .project-info h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #333;
+  border-top: 2px solid #ddd;
+  padding-top: 1rem;
+}
+.modal-content .project-info p {
+  margin: 1rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify; /* Improve text layout */
+}
+.modal-content .project-info ul {
+  list-style: disc;
+  margin: 1rem 0 1rem 1.5rem;
+}
+.modal-content .project-info li {
+  margin: 0.5rem 0;
+}
+.modal-content .project-info a {
+  display: inline-block;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000000;
+}
+.modal-content .project-info a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 1000px) {
+  .modal-content .project-info h2, .modal-content .project-info h3 {
+    font-size: 1.2rem;
+  }
+  .modal-content .project-info p {
+    font-size: 0.95rem;
+  }
+}
+.modal-content .skills-icons {
+  display: flex;
+  flex-wrap: wrap; /* Wrap skills for smaller screens */
+  gap: 10px;
+  justify-content: center;
+}
+.modal-content .skills-icons img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  transition: transform 0.3s;
+}
+.modal-content .skills-icons img:hover {
+  transform: scale(1.1);
+}
+.modal-content .skills-icons span {
+  font-size: 0.9rem;
+  color: #333;
+  display: inline-block;
+  margin: 0.5rem;
+  text-align: center;
+}
+@media (max-width: 1000px) {
+  .modal-content .skills-icons img {
+    width: 40px; /* Reduce size on mobile */
+    height: 40px;
+  }
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  color: #000000;
+}
+.modal-body img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.modal-body p {
+  text-align: justify;
+  line-height: 1.4;
+}
+@media (max-width: 1000px) {
+  .modal-body {
+    font-size: 0.9rem;
+  }
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns for desktop */
+  gap: 30px; /* Space between cards */
+  justify-items: center;
+  color: #000000;
+}
+@media (max-width: 1000px) {
+  .project-list {
+    grid-template-columns: 1fr; /* One column for mobile */
+    gap: 20px;
+  }
+}
+
+/* Main Profile Container */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.profile .profile-content {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-around; /* Space items evenly around */
+  width: 100%;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+.profile .profile-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 50%; /* Ensure it doesn't exceed half the available space */
+  box-sizing: border-box;
+}
+.profile .profile-text .profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.profile .profile-text .profile-section .section-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  border-left: 4px solid #000000; /* Stylish left border */
+  padding-left: 10px; /* Space between border and text */
+  color: #000000;
+}
+.profile .profile-text .profile-section .profile-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #000000;
+}
+.profile .logo-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  max-width: 30%;
+  height: auto; /* Let height adjust based on content */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+.profile .logo-container #rect1 {
+  transition: transform 0.5s ease;
+  transform-origin: center;
+}
+.profile .logo-container #barre1,
+.profile .logo-container #barre2,
+.profile .logo-container #barre0 {
+  transition: transform 0.5s ease;
+}
+.profile .logo-container:hover #rect1 {
+  transform: rotate(-45deg);
+}
+.profile .logo-container:hover #barre1 {
+  transform: translate(-15px, 15px);
+}
+.profile .logo-container:hover #barre2 {
+  transform: translateY(-15px);
+}
+.profile .logo-container:hover #barre0 {
+  transform: translate(15px, 15px);
+}
+.profile .logo-container .landing-logo {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive Rules */
+@media (max-width: 1000px) {
+  .profile .profile-content {
+    flex-direction: column; /* Stack items vertically for smaller screens */
+    justify-content: center;
+    text-align: center; /* Center text alignment */
+  }
+  .profile .profile-text {
+    max-width: 100%;
+  }
+  .profile .profile-text .profile-section .section-title {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .profile .profile-text .profile-section .section-title.mobile-hide {
+    display: none;
+  }
+  .profile .profile-text .profile-section .profile-description.mobile-hide {
+    display: none;
+  }
+  .logo-container {
+    width: 100%; /* Full width for smaller screens */
+    height: auto; /* Adjust height */
+  }
+}
+.skills {
+  padding: 20px;
+  text-align: center;
+}
+
+.skills-title {
+  font-size: 2em;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* Container  style for the pie charts */
+.pie-chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px; /* Space between charts */
+  width: 100%;
+  padding: 40px 0; /* padding around the container */
+}
+
+/* chart positioning styling sizing  */
+.category-container {
+  position: relative;
+  width: 300px; /* Increased chart size */
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Category title , animated underline */
+.category-title {
+  color: #000000;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+/* Initial hidden underline */
+.category-title::after {
+  content: "";
+  position: absolute;
+  top: 1.8rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000000;
+  transition: width 0.3s ease;
+}
+
+/* Animated underline on hover chart */
+.category-container:hover .category-title::after {
+  width: 100%; /* Grow underline to full width */
+}
+
+/* Pie chart wrapper for centering chart and hover info */
+.pie-chart-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-tooltip {
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.1s ease;
+  transform: translate(-50%, -110%);
+  z-index: 9999;
+  max-width: 90vw; /* Constrain tooltip width to 90% of viewport width */
+  box-sizing: border-box; /* Ensure padding doesn't exceed the max width */
+  word-wrap: break-word; /* Prevent overflow of long text */
+}
+@media (max-width: 1000px) {
+  .custom-tooltip {
+    transform: translate(-50%, -100%); /* Adjust for smaller screen sizes */
+    left: 50%; /* Center horizontally */
+    bottom: 10%; /* Ensure it doesn't go below the screen */
+  }
+}
+
+.tooltip-content {
+  display: flex;
+  align-items: flex-start;
+  background-color: rgba(30, 30, 30, 0.9);
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 100%; /* Ensure tooltip content fits within tooltip container */
+  box-sizing: border-box;
+}
+@media (max-width: 1000px) {
+  .tooltip-content {
+    flex-direction: column; /* Stack logo and text vertically for smaller screens */
+    align-items: center; /* Center align content */
+    text-align: center; /* Center text */
+  }
+}
+
+.tooltip-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+@media (max-width: 1000px) {
+  .tooltip-logo {
+    margin-right: 0;
+    margin-bottom: 5px; /* Add space below logo */
+  }
+}
+
+.tooltip-content strong {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.tooltip-content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Error Page Styles */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  color: #333;
+}
+
+.error-page h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  background-color: #ccc;
+  color: #d8000c;
+  padding: 15px;
+  border: 1px solid #d8000c;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.back-link {
+  font-size: 1em;
+  color: #000000;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.gallery {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+.gallery .gallery-image-wrapper {
+  width: 100%;
+  height: 60vh; /* Dynamically scale height based on viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevent content from spilling out */
+  background-color: #ffffff; /* Optional background for better appearance */
+  border: 2px solid #555; /* Border for structure */
+  border-radius: 15px;
+}
+@media (max-width: 1000px) {
+  .gallery .gallery-image-wrapper {
+    height: 40vh; /* Adjust height for smaller screens */
+  }
+}
+.gallery .gallery-image {
+  max-width: 100%; /* Ensure image fits within the container width */
+  max-height: 100%; /* Ensure image fits within the container height */
+  -o-object-fit: contain;
+     object-fit: contain; /* Show full image without cropping */
+}
+.gallery .arrow {
+  background: none;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #333;
+  padding: 0 1rem;
+}
+.gallery .arrow:hover {
+  color: #007bff;
+}
+.gallery .left-arrow {
+  left: 0;
+}
+.gallery .right-arrow {
+  right: 0;
+}
+.gallery .image-index {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  width: 100%;
+  font-size: 1rem;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 0;
+}
+@media (max-width: 1000px) {
+  .gallery .image-index {
+    font-size: 0.9rem;
+  }
+}/*# sourceMappingURL=main.css.map */

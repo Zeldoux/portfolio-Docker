@@ -1,0 +1,34 @@
+@import '../abstracts/variable'; 
+@import '../abstracts/mixins';
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  @include border-radius($border-radius-medium);
+  overflow: hidden;
+  @include box-shadow();
+  @include transition(transform, $transition-fast);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &-image {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Maintain a consistent aspect ratio for the image */
+    object-fit: cover; /* Ensures the image covers its container without distortion */
+    flex-shrink: 0; /* Prevent image from shrinking */
+  }
+
+  &-title {
+    flex: 1;
+    font-size: $font-size-base;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+  }
+}

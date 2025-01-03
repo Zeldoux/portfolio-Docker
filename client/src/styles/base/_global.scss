@@ -1,0 +1,38 @@
+html {
+    font-size: 100%; /* Default is 16px (1rem) */
+     scroll-behavior: smooth;
+     scroll-padding-top: 70px;
+  }
+
+body {
+    font-family: $font-primary;
+    color: $color-black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: $font-weight-bold;
+  }
+  
+  p {
+    font-weight: $font-weight-normal;
+    line-height: 1.6;
+  }
+  
+  
+  @media (max-width: 768px) {
+    html {
+      font-size: 110%; /* Scales down for smaller devices */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    html {
+      font-size: 120%; /* Further scales down for very small devices */
+    }
+  }
+  

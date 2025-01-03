@@ -1,0 +1,165 @@
+@import '../abstracts/media';
+@import '../abstracts/mixins';
+@import '../abstracts/variable';
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: $color-white; /* Softer background for better contrast */
+  padding: 20px;
+  width: 90%;
+  max-width: 80%;
+  max-height: 50rem;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+
+  @include respond-to(mobile) {
+    width: 95%;
+    max-height: 95%;
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .modal-close {
+    justify-content: flex-end;
+    display: flex;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 0 1rem 0;
+
+    @include respond-to(mobile) {
+      font-size: 1.2rem;
+    }
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+
+    h2, h3 {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      color: #333;
+      border-top: 2px solid #ddd;
+      padding-top: 1rem;
+    }
+
+    p {
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: justify; /* Improve text layout */
+    }
+
+    ul {
+      list-style: disc;
+      margin: 1rem 0 1rem 1.5rem;
+    }
+
+    li {
+      margin: 0.5rem 0;
+    }
+
+    a {
+      display: inline-block;
+      text-align: center;
+      margin-top: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: $color-black;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @include respond-to(mobile) {
+      h2, h3 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  .skills-icons {
+    display: flex;
+    flex-wrap: wrap; /* Wrap skills for smaller screens */
+    gap: 10px;
+    justify-content: center;
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    span {
+      font-size: 0.9rem;
+      color:$color-gray-dark;
+      display: inline-block;
+      margin: 0.5rem;
+      text-align: center;
+    }
+
+    @include respond-to(mobile) {
+      img {
+        width: 40px; /* Reduce size on mobile */
+        height: 40px;
+      }
+    }
+  }
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  color: $color-black;
+
+  img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  p {
+    text-align: justify;
+    line-height: 1.4;
+  }
+
+  @include respond-to(mobile) {
+    font-size: 0.9rem;
+
+  }
+}
+

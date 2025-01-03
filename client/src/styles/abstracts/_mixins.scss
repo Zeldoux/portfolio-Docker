@@ -1,0 +1,79 @@
+// Flexbox Centering
+@mixin flex-center($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  // Box Shadow
+  @mixin box-shadow($shadow: $box-shadow-light) {
+    box-shadow: $shadow;
+  }
+  
+  // Transition
+  @mixin transition($properties: all, $duration: $transition-medium, $timing: ease) {
+    transition: $properties $duration $timing;
+  }
+  
+  // Border Radius
+  @mixin border-radius($radius: $border-radius-medium) {
+    border-radius: $radius;
+  }
+  
+  // Absolute Centering
+  @mixin absolute-center($transform: true) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @if $transform {
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  // Responsive Text Size
+  @mixin responsive-text($size) {
+    font-size: $size;
+    @media (max-width: 768px) {
+      font-size: $size * 0.8;
+    }
+  }
+  
+  // Hover Effect
+  @mixin hover-effect($property, $value) {
+    &:hover {
+      #{$property}: $value;
+    }
+  }
+
+  @mixin logo-hover-animation {
+    #rect1 {
+      @include transition(transform, $transition-slow, ease);
+      transform-origin: center;
+    }
+  
+    #barre1,
+    #barre2,
+    #barre0 {
+      @include transition(transform, $transition-slow, ease);
+    }
+  
+    &:hover {
+      #rect1 {
+        transform: rotate(-45deg);
+      }
+  
+      #barre1 {
+        transform: translate(-15px, 15px);
+      }
+  
+      #barre2 {
+        transform: translateY(-15px);
+      }
+  
+      #barre0 {
+        transform: translate(15px, 15px);
+      }
+    }
+  }
+  

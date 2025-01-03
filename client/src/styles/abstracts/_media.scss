@@ -1,0 +1,10 @@
+// _media.scss
+$breakpoint-mobile: 1000px;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: #{$breakpoint-mobile}) {
+      @content;
+    }
+  }
+}

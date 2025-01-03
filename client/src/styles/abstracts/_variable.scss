@@ -1,0 +1,51 @@
+
+
+// Colors
+$color-white: #ffffff;
+$color-black: #000000;
+$color-gray-light: #ccc;
+$color-gray-medium: #555;
+$color-gray-dark: #333;
+$color-red: #d8000c;
+$color-blue: #007bff;
+$color-green: #2ecc71;
+$color-overlay: rgba(0, 0, 0, 0.5);
+
+// Background Colors
+$bg-transparent-light: rgba(255, 255, 255, 0.1);
+$bg-transparent-dark: rgba(0, 0, 0, 0.8);
+$bg-gradient-dark: linear-gradient(135deg, rgba(50, 50, 50, 0.3), rgba(0, 0, 0, 0.7));
+
+// Font Families
+$font-primary: 'Inter', sans-serif;
+$font-monospace: 'Roboto Mono', 'Courier New', Courier, monospace;
+
+// Font Sizes
+$font-size-small: 0.9rem;
+$font-size-base: 1rem;
+$font-size-large: 1.5em;
+$font-size-xlarge: 2em;
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+
+// Border Radius
+$border-radius-small: 5px;
+$border-radius-medium: 8px;
+$border-radius-large: 15px;
+$border-radius-xlarge: 25px;
+
+// Box Shadows
+$box-shadow-light: 0 4px 8px rgba(0, 0, 0, 0.2);
+$box-shadow-medium: 0px 4px 8px rgba(0, 0, 0, 0.3);
+
+// Transition Durations
+$transition-fast: 0.2s;
+$transition-medium: 0.3s;
+$transition-slow: 0.5s;
+
+// Z-index
+$z-index-header: 1000;
+$z-index-tooltip: 9999;
+$z-index-background: -1;

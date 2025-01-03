@@ -1,0 +1,21 @@
+@import './abstracts/variable';
+@import './abstracts/mixins';
+
+@import './base/global';
+@import './base/reset';
+@import './base/typography';
+
+@import './abstracts/media';
+
+@import './components/MobileButton.scss';
+@import './components/AltchaWidget';
+@import './components/Card';
+@import './components/Contact';
+@import './components/Modal';
+@import './components/ProjectList';
+@import './components/Profile';
+@import './components/Skills';
+@import './components/ToolTip';
+@import './components/ErrorPage.scss';
+@import './components/Gallery.scss';
+

@@ -1,0 +1,15 @@
+@import '../abstracts/variable';
+@import '../abstracts/media';
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns for desktop */
+  gap: 30px; /* Space between cards */
+  justify-items: center;
+  color: $color-black;
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr; /* One column for mobile */
+    gap: 20px; 
+  }
+}
